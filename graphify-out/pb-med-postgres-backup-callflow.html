@@ -60,7 +60,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <div class="container">
 
 <h1>pb-med-postgres-backup — Complete Call Flow &amp; Architecture Documentation</h1>
-<p class="subtitle">Generated from graphify knowledge graph: 115 nodes, 125 edges, 14 communities. Commit: ee279f6</p>
+<p class="subtitle">Generated from graphify knowledge graph: 125 nodes, 145 edges, 12 communities. Commit: 2500aa4</p>
 
 <div class="nav">
     <a href="#overview">Architecture Overview</a>
@@ -82,13 +82,13 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    BUILD_GRAPH_321CBB04("Graph Build<br/><small>19 nodes</small>")
+    BUILD_GRAPH_321CBB04("Graph Build<br/><small>43 nodes</small>")
     class BUILD_GRAPH_321CBB04 module;
     ANALYSIS_CLUSTERING_C79796DA("Analysis &amp; Clustering<br/><small>4 nodes</small>")
     class ANALYSIS_CLUSTERING_C79796DA module;
     CLI_SKILLS_9964CBB8("CLI &amp; Skill Installers<br/><small>35 nodes</small>")
     class CLI_SKILLS_9964CBB8 module;
-    TESTS_FIXTURES_B84B1DCC("Tests &amp; Fixtures<br/><small>28 nodes</small>")
+    TESTS_FIXTURES_B84B1DCC("Tests &amp; Fixtures<br/><small>14 nodes</small>")
     class TESTS_FIXTURES_B84B1DCC module;
     PB_MED_POSTGRES_BACKUP_638D2CAD("pb-med-postgres-backup<br/><small>11 nodes</small>")
     class PB_MED_POSTGRES_BACKUP_638D2CAD module;
@@ -100,14 +100,8 @@ flowchart LR
     class GRAPHIFY_POST_COMMIT_SH_296F959F module;
     GRAPHIFY_SESSION_CONTEXT_SH_BFC34C53("graphify-session-context.sh<br/><small>2 nodes</small>")
     class GRAPHIFY_SESSION_CONTEXT_SH_BFC34C53 module;
-    BUILD_GRAPH_321CBB04 -.-> ANALYSIS_CLUSTERING_C79796DA
-    ANALYSIS_CLUSTERING_C79796DA -.-> CLI_SKILLS_9964CBB8
-    CLI_SKILLS_9964CBB8 -.-> TESTS_FIXTURES_B84B1DCC
-    TESTS_FIXTURES_B84B1DCC -.-> PB_MED_POSTGRES_BACKUP_638D2CAD
-    PB_MED_POSTGRES_BACKUP_638D2CAD -.-> GRAPHIFY_EXPLORER_PRO_PB_MED_POSTGRES_BACKUP_OPS_E0ADC083
-    GRAPHIFY_EXPLORER_PRO_PB_MED_POSTGRES_BACKUP_OPS_E0ADC083 -.-> CAMPAIGNS_CRM_CONTRATO_DE_RESTORE_DEL_SERVICIO_D_6E395D70
-    CAMPAIGNS_CRM_CONTRATO_DE_RESTORE_DEL_SERVICIO_D_6E395D70 -.-> GRAPHIFY_POST_COMMIT_SH_296F959F
-    GRAPHIFY_POST_COMMIT_SH_296F959F -.-> GRAPHIFY_SESSION_CONTEXT_SH_BFC34C53
+    BUILD_GRAPH_321CBB04 -->|imports x2| TESTS_FIXTURES_B84B1DCC
+    TESTS_FIXTURES_B84B1DCC -->|dynamic import x2| BUILD_GRAPH_321CBB04
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
     classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
@@ -124,20 +118,20 @@ flowchart LR
     <h4>Architecture Layers</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>Layer</th><th>Nodes</th><th>Communities</th></tr>
-      <tr><td>Graph Build</td><td>19</td><td><code>2, 5</code></td></tr><tr><td>Analysis &amp; Clustering</td><td>4</td><td><code>9</code></td></tr><tr><td>CLI &amp; Skill Installers</td><td>35</td><td><code>1, 4, 7, 14</code></td></tr><tr><td>Tests &amp; Fixtures</td><td>28</td><td><code>0, 10</code></td></tr><tr><td>pb-med-postgres-backup</td><td>11</td><td><code>3</code></td></tr><tr><td>Graphify Explorer Pro — pb-med-postgres-backup (Ops)</td><td>8</td><td><code>6</code></td></tr><tr><td>Campaigns CRM — contrato de restore del servicio de backups</td><td>5</td><td><code>8</code></td></tr><tr><td>graphify-post-commit.sh</td><td>3</td><td><code>12</code></td></tr><tr><td>graphify-session-context.sh</td><td>2</td><td><code>13</code></td></tr>
+      <tr><td>Graph Build</td><td>43</td><td><code>0, 2</code></td></tr><tr><td>Analysis &amp; Clustering</td><td>4</td><td><code>9</code></td></tr><tr><td>CLI &amp; Skill Installers</td><td>35</td><td><code>4, 1, 14</code></td></tr><tr><td>Tests &amp; Fixtures</td><td>14</td><td><code>10</code></td></tr><tr><td>pb-med-postgres-backup</td><td>11</td><td><code>3</code></td></tr><tr><td>Graphify Explorer Pro — pb-med-postgres-backup (Ops)</td><td>8</td><td><code>6</code></td></tr><tr><td>Campaigns CRM — contrato de restore del servicio de backups</td><td>5</td><td><code>8</code></td></tr><tr><td>graphify-post-commit.sh</td><td>3</td><td><code>12</code></td></tr><tr><td>graphify-session-context.sh</td><td>2</td><td><code>13</code></td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Core Flow</h4>
-    <div class="arrow-chain">Graph Build -&gt; Analysis &amp; Clustering -&gt; CLI &amp; Skill Installers -&gt; Tests &amp; Fixtures -&gt; pb-med-postgres-backup -&gt; Graphify Explorer Pro — pb-med-postgres-backup (Ops) -&gt; Campaigns CRM — contrato de restore del servicio de backups</div>
+    <div class="arrow-chain">Analysis &amp; Clustering -&gt; Graph Build -&gt; Tests &amp; Fixtures -&gt; CLI &amp; Skill Installers -&gt; pb-med-postgres-backup -&gt; Graphify Explorer Pro — pb-med-postgres-backup (Ops) -&gt; Campaigns CRM — contrato de restore del servicio de backups</div>
   </div>
 </div>
 <div class="grid">
   <div class="card">
     <h4>Graph Report Highlights</h4>
     <ul>
-      <li>115 nodes · 125 edges · 14 communities (11 shown, 3 thin omitted)</li>
-      <li>Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.5)</li>
+      <li>125 nodes · 145 edges · 12 communities (9 shown, 3 thin omitted)</li>
+      <li>Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.85)</li>
       <li>Token cost: 0 input · 0 output</li>
       <li>1. `pb-med-postgres-backup — CLAUDE.md` - 14 edges</li>
       <li>2. `pb-med-postgres-backup` - 10 edges</li>
@@ -148,53 +142,85 @@ flowchart LR
 <hr>
 <!-- ====== 2. Graph Build ====== -->
 <h2 id="build-graph">2. Graph Build</h2>
-<p>Graph Build groups implementation around packagejson, aws, sdk, client, mostly in package.json. This section covers 19 nodes and 18 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<p>Graph Build groups implementation around packagejson, backupjs, serverjs, retentionjs, mostly in package.json, src/backup.js, src/server.js. This section covers 43 nodes and 66 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Graph Build (19 nodes, 18 edges)
-    package_dependencies_aws_sdk_client_s3_4516b173("@aws-sdk/client-s3<br/><small>package.json</small>")
-    package_dependencies_aws_sdk_s3_request_presigne_e08b7c42("@aws-sdk/s3-request-presigner<br/><small>package.json</small>")
-    package_dependencies_express_ada56cce("express<br/><small>package.json</small>")
-    package_dependencies_node_cron_33374856("node-cron<br/><small>package.json</small>")
-    aws_sdk_client_s3_000cfd60("@aws-sdk/client-s3<br/><small>package.json</small>")
-    aws_sdk_s3_request_presigner_cb27ad41("@aws-sdk/s3-request-presigner<br/><small>package.json</small>")
-    express_f3c62de4("express<br/><small>package.json</small>")
-    package_json_node_cron_19b6dc10("node-cron<br/><small>package.json</small>")
-    package_dependencies_c512ca5e("dependencies<br/><small>package.json</small>")
-    package_description_1bccacf3("description<br/><small>package.json</small>")
-    package_scripts_dev_8c0c97d3("dev<br/><small>package.json</small>")
-    package_main_4e9b6a0e("main<br/><small>package.json</small>")
-    package_name_b23e1232("name<br/><small>package.json</small>")
-    package_582681c2("package.json")
-    package_scripts_25cfc1ca("scripts<br/><small>package.json</small>")
-    package_scripts_start_e2cf302c("start<br/><small>package.json</small>")
-    package_scripts_test_71544dc5("test<br/><small>package.json</small>")
-    package_type_7bb9ccc5("type<br/><small>package.json</small>")
-    package_dependencies_aws_sdk_client_s3_4516b173 -->|imports| aws_sdk_client_s3_000cfd60
-    package_dependencies_aws_sdk_s3_request_presigne_e08b7c42 -->|imports| aws_sdk_s3_request_presigner_cb27ad41
-    package_dependencies_express_ada56cce -->|imports| express_f3c62de4
-    package_dependencies_node_cron_33374856 -->|imports| package_json_node_cron_19b6dc10
-    %% Omitted for readability: 1 nodes, 0 edges
-    class package_dependencies_aws_sdk_client_s3_4516b173 entry;
-    class package_dependencies_aws_sdk_s3_request_presigne_e08b7c42 function;
-    class package_dependencies_express_ada56cce function;
-    class package_dependencies_node_cron_33374856 function;
-    class aws_sdk_client_s3_000cfd60 entry;
-    class aws_sdk_s3_request_presigner_cb27ad41 function;
-    class express_f3c62de4 function;
-    class package_json_node_cron_19b6dc10 function;
-    class package_dependencies_c512ca5e function;
-    class package_description_1bccacf3 function;
-    class package_scripts_dev_8c0c97d3 function;
-    class package_main_4e9b6a0e function;
-    class package_name_b23e1232 function;
+    %% Section: Graph Build (43 nodes, 66 edges)
+    subgraph build_graph_src_backup_js_41d3170e["src/backup.js"]
+        src_backup_325307f2("backup.js")
+        src_backup_dumpandupload_13ad3952("dumpAndUpload()<br/><small>src/backup.js</small>")
+        src_backup_buildkey_d5e35ffa("buildKey()<br/><small>src/backup.js</small>")
+        src_backup_getlatestbackupurl_3d72d650("getLatestBackupUrl()<br/><small>src/backup.js</small>")
+        src_backup_listbackups_39625993("listBackups()<br/><small>src/backup.js</small>")
+        src_backup_streamdump_0a82631f("streamDump()<br/><small>src/backup.js</small>")
+    end
+    subgraph build_graph_package_json_4e40bfbd["package.json"]
+        package_582681c2("package.json")
+        ref_aws_sdk_s3_request_presigner_0e02e3d3("@aws-sdk/s3-request-presigner<br/><small>package.json</small>")
+        ref_aws_sdk_client_s3_4205c050("@aws-sdk/client-s3<br/><small>package.json</small>")
+    end
+    subgraph build_graph_External_generated_653891f5["External / generated"]
+        ref_node_fs_b768bf73("ref_node_fs")
+        ref_node_os_7cf622f8("ref_node_os")
+    end
+    subgraph build_graph_src_config_js_3402724c["src/config.js"]
+        src_config_config_bef496dc("config<br/><small>src/config.js</small>")
+        src_config_f55793b8("config.js")
+    end
+    subgraph build_graph_src_retention_js_25716c89["src/retention.js"]
+        src_retention_a4a1dc36("retention.js")
+        src_retention_cleanoldbackups_b450ed1f("cleanOldBackups()<br/><small>src/retention.js</small>")
+    end
+    subgraph build_graph_src_server_js_f0cd0181["src/server.js"]
+        src_server_87d42fc7("server.js")
+        src_server_runscheduledbackup_fbd44d12("runScheduledBackup()<br/><small>src/server.js</small>")
+    end
+    src_index_811cdc82("index.js")
+    src_backup_dumpandupload_13ad3952 -->|calls| src_backup_buildkey_d5e35ffa
+    src_backup_getlatestbackupurl_3d72d650 -->|calls| src_backup_listbackups_39625993
+    src_server_runscheduledbackup_fbd44d12 -->|calls| src_backup_dumpandupload_13ad3952
+    src_server_runscheduledbackup_fbd44d12 -->|calls| src_retention_cleanoldbackups_b450ed1f
+    src_backup_325307f2 -->|imports| src_config_config_bef496dc
+    src_backup_325307f2 -->|imports| ref_aws_sdk_s3_request_presigner_0e02e3d3
+    src_backup_325307f2 -->|imports| src_config_f55793b8
+    src_backup_325307f2 -->|imports| ref_node_fs_b768bf73
+    src_backup_325307f2 -->|imports| ref_node_os_7cf622f8
+    src_backup_325307f2 -->|imports| ref_aws_sdk_client_s3_4205c050
+    src_index_811cdc82 -->|imports| src_config_config_bef496dc
+    src_index_811cdc82 -->|imports| src_config_f55793b8
+    src_retention_a4a1dc36 -->|imports| src_config_config_bef496dc
+    src_retention_a4a1dc36 -->|imports| ref_aws_sdk_client_s3_4205c050
+    src_retention_a4a1dc36 -->|imports| src_config_f55793b8
+    src_server_87d42fc7 -->|imports| src_config_config_bef496dc
+    src_server_87d42fc7 -->|imports| src_backup_dumpandupload_13ad3952
+    src_server_87d42fc7 -->|imports| src_backup_getlatestbackupurl_3d72d650
+    src_server_87d42fc7 -->|imports| src_backup_listbackups_39625993
+    src_server_87d42fc7 -->|imports| src_backup_streamdump_0a82631f
+    src_server_87d42fc7 -->|imports| src_retention_cleanoldbackups_b450ed1f
+    src_server_87d42fc7 -->|imports| src_config_f55793b8
+    src_server_87d42fc7 -->|imports| src_backup_325307f2
+    src_server_87d42fc7 -->|imports| src_retention_a4a1dc36
+    %% Omitted for readability: 25 nodes, 2 edges
+    class src_backup_325307f2 module;
+    class src_backup_dumpandupload_13ad3952 function;
+    class src_backup_buildkey_d5e35ffa function;
+    class src_backup_getlatestbackupurl_3d72d650 function;
+    class src_backup_listbackups_39625993 function;
+    class src_backup_streamdump_0a82631f async;
     class package_582681c2 function;
-    class package_scripts_25cfc1ca function;
-    class package_scripts_start_e2cf302c function;
-    class package_scripts_test_71544dc5 function;
-    class package_type_7bb9ccc5 function;
+    class ref_aws_sdk_s3_request_presigner_0e02e3d3 function;
+    class ref_aws_sdk_client_s3_4205c050 entry;
+    class ref_node_fs_b768bf73 function;
+    class ref_node_os_7cf622f8 function;
+    class src_config_config_bef496dc function;
+    class src_config_f55793b8 module;
+    class src_retention_a4a1dc36 module;
+    class src_retention_cleanoldbackups_b450ed1f function;
+    class src_server_87d42fc7 module;
+    class src_server_runscheduledbackup_fbd44d12 function;
+    class src_index_811cdc82 module;
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
     classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
@@ -218,86 +244,214 @@ flowchart LR
 </tr>
 <tr>
   <td>1</td>
-  <td><code>package.json</code><br><small style="color:var(--muted)">package.json</small></td>
+  <td><code>buildKey()</code><br><small style="color:var(--muted)">src/backup.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
+  <td><code>dumpAndUpload()</code><br><small style="color:var(--muted)">src/backup.js</small></td>
   <td>No direct outbound edge</td>
-  <td>package.json node in package.json.</td>
+  <td>buildKey() node in src/backup.js.</td>
 </tr>
 <tr>
   <td>2</td>
-  <td><code>description</code><br><small style="color:var(--muted)">package.json</small></td>
+  <td><code>dumpAndUpload()</code><br><small style="color:var(--muted)">src/backup.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>description node in package.json.</td>
+  <td><code>runScheduledBackup()</code><br><small style="color:var(--muted)">src/server.js</small><br><code>server.js</code><br><small style="color:var(--muted)">src/server.js</small></td>
+  <td><code>buildKey()</code><br><small style="color:var(--muted)">src/backup.js</small></td>
+  <td>dumpAndUpload() node in src/backup.js.</td>
 </tr>
 <tr>
   <td>3</td>
-  <td><code>main</code><br><small style="color:var(--muted)">package.json</small></td>
+  <td><code>getLatestBackupUrl()</code><br><small style="color:var(--muted)">src/backup.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>main node in package.json.</td>
-</tr>
-<tr>
-  <td>4</td>
-  <td><code>name</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>name node in package.json.</td>
-</tr>
-<tr>
-  <td>5</td>
-  <td><code>scripts</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>scripts node in package.json.</td>
-</tr>
-<tr>
-  <td>6</td>
-  <td><code>dev</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>dev node in package.json.</td>
-</tr>
-<tr>
-  <td>7</td>
-  <td><code>start</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>start node in package.json.</td>
-</tr>
-<tr>
-  <td>8</td>
-  <td><code>test</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
+  <td><code>server.js</code><br><small style="color:var(--muted)">src/server.js</small></td>
+  <td><code>listBackups()</code><br><small style="color:var(--muted)">src/backup.js</small></td>
   <td>Verifies imports, entry points, or version behavior.</td>
 </tr>
 <tr>
-  <td>9</td>
-  <td><code>type</code><br><small style="color:var(--muted)">package.json</small></td>
+  <td>4</td>
+  <td><code>listBackups()</code><br><small style="color:var(--muted)">src/backup.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
+  <td><code>getLatestBackupUrl()</code><br><small style="color:var(--muted)">src/backup.js</small><br><code>server.js</code><br><small style="color:var(--muted)">src/server.js</small></td>
   <td>No direct outbound edge</td>
-  <td>type node in package.json.</td>
+  <td>listBackups() node in src/backup.js.</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td><code>streamDump()</code><br><small style="color:var(--muted)">src/backup.js</small></td>
+  <td><span class="tag tag-async">Async</span></td>
+  <td><code>server.js</code><br><small style="color:var(--muted)">src/server.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>streamDump() node in src/backup.js.</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td><code>cleanOldBackups()</code><br><small style="color:var(--muted)">src/retention.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>runScheduledBackup()</code><br><small style="color:var(--muted)">src/server.js</small><br><code>server.js</code><br><small style="color:var(--muted)">src/server.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>cleanOldBackups() node in src/retention.js.</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td><code>getBackupStats()</code><br><small style="color:var(--muted)">src/retention.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>server.js</code><br><small style="color:var(--muted)">src/server.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>getBackupStats() node in src/retention.js.</td>
+</tr>
+<tr>
+  <td>8</td>
+  <td><code>authenticate()</code><br><small style="color:var(--muted)">src/server.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>server.js</code><br><small style="color:var(--muted)">src/server.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>authenticate() node in src/server.js.</td>
+</tr>
+<tr>
+  <td>9</td>
+  <td><code>runScheduledBackup()</code><br><small style="color:var(--muted)">src/server.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>startServer()</code><br><small style="color:var(--muted)">src/server.js</small></td>
+  <td><code>cleanOldBackups()</code><br><small style="color:var(--muted)">src/retention.js</small><br><code>dumpAndUpload()</code><br><small style="color:var(--muted)">src/backup.js</small></td>
+  <td>runScheduledBackup() node in src/server.js.</td>
 </tr>
 <tr>
   <td>10</td>
-  <td><code>version</code><br><small style="color:var(--muted)">package.json</small></td>
+  <td><code>startServer()</code><br><small style="color:var(--muted)">src/server.js</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>version node in package.json.</td>
+  <td><code>runScheduledBackup()</code><br><small style="color:var(--muted)">src/server.js</small></td>
+  <td>startServer() node in src/server.js.</td>
 </tr>
 <tr>
   <td>11</td>
+  <td><code>backup.js</code><br><small style="color:var(--muted)">src/backup.js</small></td>
+  <td><span class="tag tag-class">Module</span></td>
+  <td><code>server.js</code><br><small style="color:var(--muted)">src/server.js</small></td>
+  <td><code>@aws-sdk/client-s3</code><br><small style="color:var(--muted)">package.json</small><br><code>@aws-sdk/s3-request-presigner</code><br><small style="color:var(--muted)">package.json</small><br><code>config</code><br><small style="color:var(--muted)">src/config.js</small><br>+5 more</td>
+  <td>backup.js node in src/backup.js.</td>
+</tr>
+<tr>
+  <td>12</td>
+  <td><code>s3</code><br><small style="color:var(--muted)">src/backup.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>s3 node in src/backup.js.</td>
+</tr>
+<tr>
+  <td>13</td>
+  <td><code>config.js</code><br><small style="color:var(--muted)">src/config.js</small></td>
+  <td><span class="tag tag-class">Module</span></td>
+  <td><code>backup.js</code><br><small style="color:var(--muted)">src/backup.js</small><br><code>index.js</code><br><small style="color:var(--muted)">src/index.js</small><br><code>retention.js</code><br><small style="color:var(--muted)">src/retention.js</small><br>+1 more</td>
+  <td>No direct outbound edge</td>
+  <td>Reads, resolves, or persists project configuration.</td>
+</tr>
+<tr>
+  <td>14</td>
+  <td><code>config</code><br><small style="color:var(--muted)">src/config.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>backup.js</code><br><small style="color:var(--muted)">src/backup.js</small><br><code>index.js</code><br><small style="color:var(--muted)">src/index.js</small><br><code>retention.js</code><br><small style="color:var(--muted)">src/retention.js</small><br>+1 more</td>
+  <td>No direct outbound edge</td>
+  <td>Reads, resolves, or persists project configuration.</td>
+</tr>
+<tr>
+  <td>15</td>
+  <td><code>missing</code><br><small style="color:var(--muted)">src/config.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>missing node in src/config.js.</td>
+</tr>
+<tr>
+  <td>16</td>
+  <td><code>required</code><br><small style="color:var(--muted)">src/config.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>required node in src/config.js.</td>
+</tr>
+<tr>
+  <td>17</td>
+  <td><code>index.js</code><br><small style="color:var(--muted)">src/index.js</small></td>
+  <td><span class="tag tag-class">Module</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>config</code><br><small style="color:var(--muted)">src/config.js</small><br><code>config.js</code><br><small style="color:var(--muted)">src/config.js</small></td>
+  <td>index.js node in src/index.js.</td>
+</tr>
+<tr>
+  <td>18</td>
+  <td><code>retention.js</code><br><small style="color:var(--muted)">src/retention.js</small></td>
+  <td><span class="tag tag-class">Module</span></td>
+  <td><code>server.js</code><br><small style="color:var(--muted)">src/server.js</small></td>
+  <td><code>@aws-sdk/client-s3</code><br><small style="color:var(--muted)">package.json</small><br><code>config</code><br><small style="color:var(--muted)">src/config.js</small><br><code>config.js</code><br><small style="color:var(--muted)">src/config.js</small></td>
+  <td>retention.js node in src/retention.js.</td>
+</tr>
+<tr>
+  <td>19</td>
+  <td><code>s3</code><br><small style="color:var(--muted)">src/retention.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>s3 node in src/retention.js.</td>
+</tr>
+<tr>
+  <td>20</td>
+  <td><code>server.js</code><br><small style="color:var(--muted)">src/server.js</small></td>
+  <td><span class="tag tag-class">Module</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>authenticate()</code><br><small style="color:var(--muted)">src/server.js</small><br><code>backup.js</code><br><small style="color:var(--muted)">src/backup.js</small><br><code>cleanOldBackups()</code><br><small style="color:var(--muted)">src/retention.js</small><br>+11 more</td>
+  <td>server.js node in src/server.js.</td>
+</tr>
+<tr>
+  <td>21</td>
+  <td><code>app</code><br><small style="color:var(--muted)">src/server.js</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>app node in src/server.js.</td>
+</tr>
+<tr>
+  <td>22</td>
+  <td><code>@aws-sdk/client-s3</code><br><small style="color:var(--muted)">package.json</small></td>
+  <td><span class="tag tag-cmd">Entry</span></td>
+  <td><code>backup.js</code><br><small style="color:var(--muted)">src/backup.js</small><br><code>package.json</code><br><small style="color:var(--muted)">package.json</small><br><code>retention.js</code><br><small style="color:var(--muted)">src/retention.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>@aws-sdk/client-s3 node in package.json.</td>
+</tr>
+<tr>
+  <td>23</td>
+  <td><code>ref_node_crypto</code><br><small style="color:var(--muted)"></small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>server.js</code><br><small style="color:var(--muted)">src/server.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>ref_node_crypto node in project.</td>
+</tr>
+<tr>
+  <td>24</td>
+  <td><code>ref_node_fs</code><br><small style="color:var(--muted)"></small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>backup.js</code><br><small style="color:var(--muted)">src/backup.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>ref_node_fs node in project.</td>
+</tr>
+<tr>
+  <td>25</td>
+  <td><code>ref_node_os</code><br><small style="color:var(--muted)"></small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>backup.js</code><br><small style="color:var(--muted)">src/backup.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>ref_node_os node in project.</td>
+</tr>
+<tr>
+  <td>26</td>
+  <td><code>package.json</code><br><small style="color:var(--muted)">package.json</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>@aws-sdk/client-s3</code><br><small style="color:var(--muted)">package.json</small><br><code>@aws-sdk/s3-request-presigner</code><br><small style="color:var(--muted)">package.json</small><br><code>express</code><br><small style="color:var(--muted)">package.json</small><br>+1 more</td>
+  <td>package.json node in package.json.</td>
+</tr>
+<tr>
+  <td>27</td>
   <td><code>dependencies</code><br><small style="color:var(--muted)">package.json</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td>External entry / no inbound edge</td>
@@ -305,68 +459,28 @@ flowchart LR
   <td>dependencies node in package.json.</td>
 </tr>
 <tr>
-  <td>12</td>
+  <td>28</td>
   <td><code>@aws-sdk/client-s3</code><br><small style="color:var(--muted)">package.json</small></td>
   <td><span class="tag tag-cmd">Entry</span></td>
   <td>External entry / no inbound edge</td>
-  <td><code>@aws-sdk/client-s3</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td>@aws-sdk/client-s3 node in package.json.</td>
-</tr>
-<tr>
-  <td>13</td>
-  <td><code>@aws-sdk/s3-request-presigner</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>@aws-sdk/s3-request-presigner</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td>@aws-sdk/s3-request-presigner node in package.json.</td>
-</tr>
-<tr>
-  <td>14</td>
-  <td><code>express</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>express</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td>express node in package.json.</td>
-</tr>
-<tr>
-  <td>15</td>
-  <td><code>node-cron</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>node-cron</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td>node-cron node in package.json.</td>
-</tr>
-<tr>
-  <td>16</td>
-  <td><code>@aws-sdk/client-s3</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td><span class="tag tag-cmd">Entry</span></td>
-  <td><code>@aws-sdk/client-s3</code><br><small style="color:var(--muted)">package.json</small></td>
   <td>No direct outbound edge</td>
   <td>@aws-sdk/client-s3 node in package.json.</td>
 </tr>
 <tr>
-  <td>17</td>
+  <td>29</td>
   <td><code>@aws-sdk/s3-request-presigner</code><br><small style="color:var(--muted)">package.json</small></td>
   <td><span class="tag tag-func">Function</span></td>
-  <td><code>@aws-sdk/s3-request-presigner</code><br><small style="color:var(--muted)">package.json</small></td>
+  <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
   <td>@aws-sdk/s3-request-presigner node in package.json.</td>
 </tr>
 <tr>
-  <td>18</td>
+  <td>30</td>
   <td><code>express</code><br><small style="color:var(--muted)">package.json</small></td>
   <td><span class="tag tag-func">Function</span></td>
-  <td><code>express</code><br><small style="color:var(--muted)">package.json</small></td>
+  <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
   <td>express node in package.json.</td>
-</tr>
-<tr>
-  <td>19</td>
-  <td><code>node-cron</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>node-cron</code><br><small style="color:var(--muted)">package.json</small></td>
-  <td>No direct outbound edge</td>
-  <td>node-cron node in package.json.</td>
 </tr>
 </table>
 
@@ -376,11 +490,16 @@ flowchart LR
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>File</th><th>Coverage</th></tr>
       <tr><td><code>package.json</code></td><td>19 nodes</td></tr>
+<tr><td><code>src/backup.js</code></td><td>7 nodes</td></tr>
+<tr><td><code>src/server.js</code></td><td>5 nodes</td></tr>
+<tr><td><code>src/config.js</code></td><td>4 nodes</td></tr>
+<tr><td><code>src/retention.js</code></td><td>4 nodes</td></tr>
+<tr><td><code>src/index.js</code></td><td>1 nodes</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x14, imports x4. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x29, imports x14, imports x14, calls x4. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
@@ -563,126 +682,6 @@ flowchart LR
 </tr>
 <tr>
   <td>1</td>
-  <td><code>CLAUDE.md</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing CLAUDE.md.</td>
-</tr>
-<tr>
-  <td>2</td>
-  <td><code>Arquitectura</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Arquitectura.</td>
-</tr>
-<tr>
-  <td>3</td>
-  <td><code>Comandos</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Comandos.</td>
-</tr>
-<tr>
-  <td>4</td>
-  <td><code>Convenciones de código</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Convenciones de código.</td>
-</tr>
-<tr>
-  <td>5</td>
-  <td><code>Cron schedule</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Cron schedule.</td>
-</tr>
-<tr>
-  <td>6</td>
-  <td><code>Estructura</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Estructura.</td>
-</tr>
-<tr>
-  <td>7</td>
-  <td><code>Formato de backup</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Formato de backup.</td>
-</tr>
-<tr>
-  <td>8</td>
-  <td><code>Infraestructura Railway</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Infraestructura Railway.</td>
-</tr>
-<tr>
-  <td>9</td>
-  <td><code>Modos de operación</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Modos de operación.</td>
-</tr>
-<tr>
-  <td>10</td>
-  <td><code>pb-med-postgres-backup — CLAUDE.md</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing pb-med-postgres-backup — CLAUDE.md.</td>
-</tr>
-<tr>
-  <td>11</td>
-  <td><code>Proyecto</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Proyecto.</td>
-</tr>
-<tr>
-  <td>12</td>
-  <td><code>Retención</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Retención.</td>
-</tr>
-<tr>
-  <td>13</td>
-  <td><code>S3 Key format</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing S3 Key format.</td>
-</tr>
-<tr>
-  <td>14</td>
-  <td><code>Stack</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Stack.</td>
-</tr>
-<tr>
-  <td>15</td>
-  <td><code>Variables de entorno requeridas</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Variables de entorno requeridas.</td>
-</tr>
-<tr>
-  <td>16</td>
   <td><code>SKILL.md</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
@@ -690,7 +689,7 @@ flowchart LR
   <td>Documentation node describing SKILL.md.</td>
 </tr>
 <tr>
-  <td>17</td>
+  <td>2</td>
   <td><code>502 en health</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
@@ -698,7 +697,7 @@ flowchart LR
   <td>Documentation node describing 502 en health.</td>
 </tr>
 <tr>
-  <td>18</td>
+  <td>3</td>
   <td><code>Backup Operations — pb-med-postgres-backup</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
@@ -706,7 +705,7 @@ flowchart LR
   <td>Documentation node describing Backup Operations — pb-med-postgres-backup.</td>
 </tr>
 <tr>
-  <td>19</td>
+  <td>4</td>
   <td><code>Backup timeout</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
@@ -714,7 +713,7 @@ flowchart LR
   <td>Documentation node describing Backup timeout.</td>
 </tr>
 <tr>
-  <td>20</td>
+  <td>5</td>
   <td><code>Cambiar schedule</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
@@ -722,47 +721,7 @@ flowchart LR
   <td>Documentation node describing Cambiar schedule.</td>
 </tr>
 <tr>
-  <td>21</td>
-  <td><code>Informacion del servicio</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Informacion del servicio.</td>
-</tr>
-<tr>
-  <td>22</td>
-  <td><code>Obtener SECRET_TOKEN</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Obtener SECRET_TOKEN.</td>
-</tr>
-<tr>
-  <td>23</td>
-  <td><code>pg_dump version mismatch</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing pg_dump version mismatch.</td>
-</tr>
-<tr>
-  <td>24</td>
-  <td><code>Troubleshooting</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Troubleshooting.</td>
-</tr>
-<tr>
-  <td>25</td>
-  <td><code>Ver logs</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Ver logs.</td>
-</tr>
-<tr>
-  <td>26</td>
+  <td>6</td>
   <td><code>Descargar ultimo backup</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
@@ -770,7 +729,7 @@ flowchart LR
   <td>Documentation node describing Descargar ultimo backup.</td>
 </tr>
 <tr>
-  <td>27</td>
+  <td>7</td>
   <td><code>Forzar limpieza</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
@@ -778,7 +737,7 @@ flowchart LR
   <td>Documentation node describing Forzar limpieza.</td>
 </tr>
 <tr>
-  <td>28</td>
+  <td>8</td>
   <td><code>Health check (sin auth)</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
@@ -786,7 +745,15 @@ flowchart LR
   <td>Documentation node describing Health check (sin auth).</td>
 </tr>
 <tr>
-  <td>29</td>
+  <td>9</td>
+  <td><code>Informacion del servicio</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Informacion del servicio.</td>
+</tr>
+<tr>
+  <td>10</td>
   <td><code>Listar backups</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
@@ -794,12 +761,164 @@ flowchart LR
   <td>Documentation node describing Listar backups.</td>
 </tr>
 <tr>
-  <td>30</td>
+  <td>11</td>
+  <td><code>Obtener SECRET_TOKEN</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Obtener SECRET_TOKEN.</td>
+</tr>
+<tr>
+  <td>12</td>
   <td><code>Operaciones</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
   <td>Documentation node describing Operaciones.</td>
+</tr>
+<tr>
+  <td>13</td>
+  <td><code>pg_dump version mismatch</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing pg_dump version mismatch.</td>
+</tr>
+<tr>
+  <td>14</td>
+  <td><code>Restaurar backup localmente</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Restaurar backup localmente.</td>
+</tr>
+<tr>
+  <td>15</td>
+  <td><code>Stream directo de pg_dump</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Stream directo de pg_dump.</td>
+</tr>
+<tr>
+  <td>16</td>
+  <td><code>Trigger backup manual</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Trigger backup manual.</td>
+</tr>
+<tr>
+  <td>17</td>
+  <td><code>Troubleshooting</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Troubleshooting.</td>
+</tr>
+<tr>
+  <td>18</td>
+  <td><code>Ver logs</code><br><small style="color:var(--muted)">skills/backup-operations/SKILL.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Ver logs.</td>
+</tr>
+<tr>
+  <td>19</td>
+  <td><code>CLAUDE.md</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing CLAUDE.md.</td>
+</tr>
+<tr>
+  <td>20</td>
+  <td><code>Arquitectura</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Arquitectura.</td>
+</tr>
+<tr>
+  <td>21</td>
+  <td><code>Comandos</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Comandos.</td>
+</tr>
+<tr>
+  <td>22</td>
+  <td><code>Convenciones de código</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Convenciones de código.</td>
+</tr>
+<tr>
+  <td>23</td>
+  <td><code>Cron schedule</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Cron schedule.</td>
+</tr>
+<tr>
+  <td>24</td>
+  <td><code>Estructura</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Estructura.</td>
+</tr>
+<tr>
+  <td>25</td>
+  <td><code>Formato de backup</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Formato de backup.</td>
+</tr>
+<tr>
+  <td>26</td>
+  <td><code>Infraestructura Railway</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Infraestructura Railway.</td>
+</tr>
+<tr>
+  <td>27</td>
+  <td><code>Modos de operación</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Modos de operación.</td>
+</tr>
+<tr>
+  <td>28</td>
+  <td><code>pb-med-postgres-backup — CLAUDE.md</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing pb-med-postgres-backup — CLAUDE.md.</td>
+</tr>
+<tr>
+  <td>29</td>
+  <td><code>Proyecto</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Proyecto.</td>
+</tr>
+<tr>
+  <td>30</td>
+  <td><code>Retención</code><br><small style="color:var(--muted)">CLAUDE.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Retención.</td>
 </tr>
 </table>
 
@@ -822,80 +941,55 @@ flowchart LR
 
 <!-- ====== 5. Tests & Fixtures ====== -->
 <h2 id="tests-fixtures">5. Tests &amp; Fixtures</h2>
-<p>Tests &amp; Fixtures groups implementation around backupjs, tests, serverjs, configtestjs, mostly in src/backup.js, src/server.js, tests/config.test.js. This section covers 28 nodes and 47 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<p>Tests &amp; Fixtures groups implementation around tests, configtestjs, ref, node, mostly in tests/config.test.js, tests/auth.test.js, tests/src/config.js. This section covers 14 nodes and 15 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Tests &amp; Fixtures (28 nodes, 47 edges)
-    subgraph tests_fixtures_src_backup_js_433ece92["src/backup.js"]
-        src_backup_325307f2("backup.js")
-        src_backup_dumpandupload_13ad3952("dumpAndUpload()<br/><small>src/backup.js</small>")
-        src_backup_buildkey_d5e35ffa("buildKey()<br/><small>src/backup.js</small>")
-        src_backup_getlatestbackupurl_3d72d650("getLatestBackupUrl()<br/><small>src/backup.js</small>")
-        src_backup_listbackups_39625993("listBackups()<br/><small>src/backup.js</small>")
-        src_backup_streamdump_0a82631f("streamDump()<br/><small>src/backup.js</small>")
-        src_backup_s3_cabf7ccb("s3<br/><small>src/backup.js</small>")
-    end
-    subgraph tests_fixtures_src_config_js_862bd783["src/config.js"]
-        src_config_config_bef496dc("config<br/><small>src/config.js</small>")
-        src_config_f55793b8("config.js")
-        src_config_missing_81407d5e("missing<br/><small>src/config.js</small>")
-    end
-    subgraph tests_fixtures_src_retention_js_851a14a7["src/retention.js"]
-        src_retention_a4a1dc36("retention.js")
-        src_retention_cleanoldbackups_b450ed1f("cleanOldBackups()<br/><small>src/retention.js</small>")
-        src_retention_getbackupstats_9e9b78cc("getBackupStats()<br/><small>src/retention.js</small>")
-    end
-    subgraph tests_fixtures_src_server_js_cda74e08["src/server.js"]
-        src_server_87d42fc7("server.js")
-        src_server_runscheduledbackup_fbd44d12("runScheduledBackup()<br/><small>src/server.js</small>")
+    %% Section: Tests &amp; Fixtures (14 nodes, 15 edges)
+    subgraph tests_fixtures_External_generated_473753cb["External / generated"]
+        ref_node_assert_d11c978e("ref_node_assert")
+        ref_node_test_8d892955("ref_node_test")
+        ref_node_child_process_a8b54592("ref_node_child_process")
+        ref_node_path_350e6c64("ref_node_path")
+        ref_node_url_a44e0198("ref_node_url")
+        ref_node_util_495fd12f("ref_node_util")
     end
     subgraph tests_fixtures_tests_config_test_js_e58a19ac["tests/config.test.js"]
+        tests_config_test_a6c0c164("config.test.js")
         tests_config_test_loadconfig_aed92443("loadConfig()<br/><small>tests/config.test.js</small>")
         tests_config_test_execfileasync_68bd491e("execFileAsync<br/><small>tests/config.test.js</small>")
+        tests_config_test_valid_env_50b2120f("VALID_ENV<br/><small>tests/config.test.js</small>")
+        tests_config_test_root_c3d9774c("root<br/><small>tests/config.test.js</small>")
     end
-    src_index_811cdc82("index.js")
-    src_backup_dumpandupload_13ad3952 -->|calls| src_backup_buildkey_d5e35ffa
-    src_backup_getlatestbackupurl_3d72d650 -->|calls| src_backup_listbackups_39625993
-    src_server_runscheduledbackup_fbd44d12 -->|calls| src_backup_dumpandupload_13ad3952
-    src_server_runscheduledbackup_fbd44d12 -->|calls| src_retention_cleanoldbackups_b450ed1f
+    subgraph tests_fixtures_tests_auth_test_js_051e701d["tests/auth.test.js"]
+        tests_auth_test_c002ba85("auth.test.js")
+        tests_auth_test_server_crontask_2ae9938a("server, cronTask<br/><small>tests/auth.test.js</small>")
+    end
+    tests_src_config_ec91cb92("config.js")
     tests_config_test_loadconfig_aed92443 -->|calls| tests_config_test_execfileasync_68bd491e
-    src_backup_325307f2 -->|imports| src_config_config_bef496dc
-    src_backup_325307f2 -->|imports| src_config_f55793b8
-    src_index_811cdc82 -->|imports| src_config_config_bef496dc
-    src_index_811cdc82 -->|imports| src_config_f55793b8
-    src_retention_a4a1dc36 -->|imports| src_config_config_bef496dc
-    src_retention_a4a1dc36 -->|imports| src_config_f55793b8
-    src_server_87d42fc7 -->|imports| src_config_config_bef496dc
-    src_server_87d42fc7 -->|imports| src_backup_dumpandupload_13ad3952
-    src_server_87d42fc7 -->|imports| src_backup_getlatestbackupurl_3d72d650
-    src_server_87d42fc7 -->|imports| src_backup_listbackups_39625993
-    src_server_87d42fc7 -->|imports| src_backup_streamdump_0a82631f
-    src_server_87d42fc7 -->|imports| src_retention_cleanoldbackups_b450ed1f
-    src_server_87d42fc7 -->|imports| src_retention_getbackupstats_9e9b78cc
-    src_server_87d42fc7 -->|imports| src_config_f55793b8
-    src_server_87d42fc7 -->|imports| src_backup_325307f2
-    src_server_87d42fc7 -->|imports| src_retention_a4a1dc36
-    %% Omitted for readability: 10 nodes, 0 edges
-    class src_backup_325307f2 module;
-    class src_backup_dumpandupload_13ad3952 function;
-    class src_backup_buildkey_d5e35ffa function;
-    class src_backup_getlatestbackupurl_3d72d650 function;
-    class src_backup_listbackups_39625993 function;
-    class src_backup_streamdump_0a82631f async;
-    class src_backup_s3_cabf7ccb function;
-    class src_config_config_bef496dc function;
-    class src_config_f55793b8 module;
-    class src_config_missing_81407d5e function;
-    class src_retention_a4a1dc36 module;
-    class src_retention_cleanoldbackups_b450ed1f function;
-    class src_retention_getbackupstats_9e9b78cc function;
-    class src_server_87d42fc7 module;
-    class src_server_runscheduledbackup_fbd44d12 function;
+    tests_auth_test_c002ba85 -->|imports| ref_node_assert_d11c978e
+    tests_auth_test_c002ba85 -->|imports| ref_node_test_8d892955
+    tests_config_test_a6c0c164 -->|imports| ref_node_assert_d11c978e
+    tests_config_test_a6c0c164 -->|imports| ref_node_child_process_a8b54592
+    tests_config_test_a6c0c164 -->|imports| ref_node_path_350e6c64
+    tests_config_test_a6c0c164 -->|imports| ref_node_test_8d892955
+    tests_config_test_a6c0c164 -->|imports| ref_node_url_a44e0198
+    tests_config_test_a6c0c164 -->|imports| ref_node_util_495fd12f
+    class ref_node_assert_d11c978e async;
+    class ref_node_test_8d892955 function;
+    class ref_node_child_process_a8b54592 function;
+    class ref_node_path_350e6c64 function;
+    class ref_node_url_a44e0198 function;
+    class ref_node_util_495fd12f function;
+    class tests_config_test_a6c0c164 test;
     class tests_config_test_loadconfig_aed92443 test;
     class tests_config_test_execfileasync_68bd491e test;
-    class src_index_811cdc82 module;
+    class tests_config_test_valid_env_50b2120f test;
+    class tests_config_test_root_c3d9774c test;
+    class tests_auth_test_c002ba85 test;
+    class tests_auth_test_server_crontask_2ae9938a test;
+    class tests_src_config_ec91cb92 test;
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
     classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
@@ -919,182 +1013,30 @@ flowchart LR
 </tr>
 <tr>
   <td>1</td>
-  <td><code>buildKey()</code><br><small style="color:var(--muted)">src/backup.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>dumpAndUpload()</code><br><small style="color:var(--muted)">src/backup.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>buildKey() node in src/backup.js.</td>
+  <td><code>loadConfig()</code><br><small style="color:var(--muted)">tests/config.test.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>execFileAsync</code><br><small style="color:var(--muted)">tests/config.test.js</small></td>
+  <td>Reads, resolves, or persists project configuration.</td>
 </tr>
 <tr>
   <td>2</td>
-  <td><code>dumpAndUpload()</code><br><small style="color:var(--muted)">src/backup.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>runScheduledBackup()</code><br><small style="color:var(--muted)">src/server.js</small><br><code>server.js</code><br><small style="color:var(--muted)">src/server.js</small></td>
-  <td><code>buildKey()</code><br><small style="color:var(--muted)">src/backup.js</small></td>
-  <td>dumpAndUpload() node in src/backup.js.</td>
+  <td><code>./src/config.js</code><br><small style="color:var(--muted)">tests/src/config.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Reads, resolves, or persists project configuration.</td>
 </tr>
 <tr>
   <td>3</td>
-  <td><code>getLatestBackupUrl()</code><br><small style="color:var(--muted)">src/backup.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>server.js</code><br><small style="color:var(--muted)">src/server.js</small></td>
-  <td><code>listBackups()</code><br><small style="color:var(--muted)">src/backup.js</small></td>
+  <td><code>auth.test.js</code><br><small style="color:var(--muted)">tests/auth.test.js</small></td>
+  <td><span class="tag tag-func">Test</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>ref_node_assert</code><br><code>ref_node_test</code></td>
   <td>Verifies imports, entry points, or version behavior.</td>
 </tr>
 <tr>
   <td>4</td>
-  <td><code>listBackups()</code><br><small style="color:var(--muted)">src/backup.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>getLatestBackupUrl()</code><br><small style="color:var(--muted)">src/backup.js</small><br><code>server.js</code><br><small style="color:var(--muted)">src/server.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>listBackups() node in src/backup.js.</td>
-</tr>
-<tr>
-  <td>5</td>
-  <td><code>streamDump()</code><br><small style="color:var(--muted)">src/backup.js</small></td>
-  <td><span class="tag tag-async">Async</span></td>
-  <td><code>server.js</code><br><small style="color:var(--muted)">src/server.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>streamDump() node in src/backup.js.</td>
-</tr>
-<tr>
-  <td>6</td>
-  <td><code>cleanOldBackups()</code><br><small style="color:var(--muted)">src/retention.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>runScheduledBackup()</code><br><small style="color:var(--muted)">src/server.js</small><br><code>server.js</code><br><small style="color:var(--muted)">src/server.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>cleanOldBackups() node in src/retention.js.</td>
-</tr>
-<tr>
-  <td>7</td>
-  <td><code>getBackupStats()</code><br><small style="color:var(--muted)">src/retention.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>server.js</code><br><small style="color:var(--muted)">src/server.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>getBackupStats() node in src/retention.js.</td>
-</tr>
-<tr>
-  <td>8</td>
-  <td><code>authenticate()</code><br><small style="color:var(--muted)">src/server.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>server.js</code><br><small style="color:var(--muted)">src/server.js</small></td>
-  <td>No direct outbound edge</td>
-  <td>authenticate() node in src/server.js.</td>
-</tr>
-<tr>
-  <td>9</td>
-  <td><code>runScheduledBackup()</code><br><small style="color:var(--muted)">src/server.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>startServer()</code><br><small style="color:var(--muted)">src/server.js</small></td>
-  <td><code>cleanOldBackups()</code><br><small style="color:var(--muted)">src/retention.js</small><br><code>dumpAndUpload()</code><br><small style="color:var(--muted)">src/backup.js</small></td>
-  <td>runScheduledBackup() node in src/server.js.</td>
-</tr>
-<tr>
-  <td>10</td>
-  <td><code>startServer()</code><br><small style="color:var(--muted)">src/server.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>runScheduledBackup()</code><br><small style="color:var(--muted)">src/server.js</small></td>
-  <td>startServer() node in src/server.js.</td>
-</tr>
-<tr>
-  <td>11</td>
-  <td><code>backup.js</code><br><small style="color:var(--muted)">src/backup.js</small></td>
-  <td><span class="tag tag-class">Module</span></td>
-  <td><code>server.js</code><br><small style="color:var(--muted)">src/server.js</small></td>
-  <td><code>config</code><br><small style="color:var(--muted)">src/config.js</small><br><code>config.js</code><br><small style="color:var(--muted)">src/config.js</small></td>
-  <td>backup.js node in src/backup.js.</td>
-</tr>
-<tr>
-  <td>12</td>
-  <td><code>s3</code><br><small style="color:var(--muted)">src/backup.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>s3 node in src/backup.js.</td>
-</tr>
-<tr>
-  <td>13</td>
-  <td><code>config.js</code><br><small style="color:var(--muted)">src/config.js</small></td>
-  <td><span class="tag tag-class">Module</span></td>
-  <td><code>backup.js</code><br><small style="color:var(--muted)">src/backup.js</small><br><code>index.js</code><br><small style="color:var(--muted)">src/index.js</small><br><code>retention.js</code><br><small style="color:var(--muted)">src/retention.js</small><br>+1 more</td>
-  <td>No direct outbound edge</td>
-  <td>Reads, resolves, or persists project configuration.</td>
-</tr>
-<tr>
-  <td>14</td>
-  <td><code>config</code><br><small style="color:var(--muted)">src/config.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>backup.js</code><br><small style="color:var(--muted)">src/backup.js</small><br><code>index.js</code><br><small style="color:var(--muted)">src/index.js</small><br><code>retention.js</code><br><small style="color:var(--muted)">src/retention.js</small><br>+1 more</td>
-  <td>No direct outbound edge</td>
-  <td>Reads, resolves, or persists project configuration.</td>
-</tr>
-<tr>
-  <td>15</td>
-  <td><code>missing</code><br><small style="color:var(--muted)">src/config.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>missing node in src/config.js.</td>
-</tr>
-<tr>
-  <td>16</td>
-  <td><code>required</code><br><small style="color:var(--muted)">src/config.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>required node in src/config.js.</td>
-</tr>
-<tr>
-  <td>17</td>
-  <td><code>index.js</code><br><small style="color:var(--muted)">src/index.js</small></td>
-  <td><span class="tag tag-class">Module</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>config</code><br><small style="color:var(--muted)">src/config.js</small><br><code>config.js</code><br><small style="color:var(--muted)">src/config.js</small></td>
-  <td>index.js node in src/index.js.</td>
-</tr>
-<tr>
-  <td>18</td>
-  <td><code>retention.js</code><br><small style="color:var(--muted)">src/retention.js</small></td>
-  <td><span class="tag tag-class">Module</span></td>
-  <td><code>server.js</code><br><small style="color:var(--muted)">src/server.js</small></td>
-  <td><code>config</code><br><small style="color:var(--muted)">src/config.js</small><br><code>config.js</code><br><small style="color:var(--muted)">src/config.js</small></td>
-  <td>retention.js node in src/retention.js.</td>
-</tr>
-<tr>
-  <td>19</td>
-  <td><code>s3</code><br><small style="color:var(--muted)">src/retention.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>s3 node in src/retention.js.</td>
-</tr>
-<tr>
-  <td>20</td>
-  <td><code>server.js</code><br><small style="color:var(--muted)">src/server.js</small></td>
-  <td><span class="tag tag-class">Module</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>authenticate()</code><br><small style="color:var(--muted)">src/server.js</small><br><code>backup.js</code><br><small style="color:var(--muted)">src/backup.js</small><br><code>cleanOldBackups()</code><br><small style="color:var(--muted)">src/retention.js</small><br>+8 more</td>
-  <td>server.js node in src/server.js.</td>
-</tr>
-<tr>
-  <td>21</td>
-  <td><code>app</code><br><small style="color:var(--muted)">src/server.js</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>app node in src/server.js.</td>
-</tr>
-<tr>
-  <td>22</td>
-  <td><code>auth.test.js</code><br><small style="color:var(--muted)">tests/auth.test.js</small></td>
-  <td><span class="tag tag-func">Test</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Verifies imports, entry points, or version behavior.</td>
-</tr>
-<tr>
-  <td>23</td>
   <td><code>{ server, cronTask }</code><br><small style="color:var(--muted)">tests/auth.test.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -1102,23 +1044,15 @@ flowchart LR
   <td>{ server, cronTask } node in tests/auth.test.js.</td>
 </tr>
 <tr>
-  <td>24</td>
-  <td><code>loadConfig()</code><br><small style="color:var(--muted)">tests/config.test.js</small></td>
-  <td><span class="tag tag-func">Test</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>execFileAsync</code><br><small style="color:var(--muted)">tests/config.test.js</small></td>
-  <td>Reads, resolves, or persists project configuration.</td>
-</tr>
-<tr>
-  <td>25</td>
+  <td>5</td>
   <td><code>config.test.js</code><br><small style="color:var(--muted)">tests/config.test.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
+  <td><code>node-cron</code><br><small style="color:var(--muted)">package.json</small><br><code>ref_node_assert</code><br><code>ref_node_child_process</code><br>+4 more</td>
   <td>Reads, resolves, or persists project configuration.</td>
 </tr>
 <tr>
-  <td>26</td>
+  <td>6</td>
   <td><code>execFileAsync</code><br><small style="color:var(--muted)">tests/config.test.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td><code>loadConfig()</code><br><small style="color:var(--muted)">tests/config.test.js</small></td>
@@ -1126,7 +1060,7 @@ flowchart LR
   <td>execFileAsync node in tests/config.test.js.</td>
 </tr>
 <tr>
-  <td>27</td>
+  <td>7</td>
   <td><code>root</code><br><small style="color:var(--muted)">tests/config.test.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
@@ -1134,12 +1068,60 @@ flowchart LR
   <td>root node in tests/config.test.js.</td>
 </tr>
 <tr>
-  <td>28</td>
+  <td>8</td>
   <td><code>VALID_ENV</code><br><small style="color:var(--muted)">tests/config.test.js</small></td>
   <td><span class="tag tag-func">Test</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
   <td>VALID_ENV node in tests/config.test.js.</td>
+</tr>
+<tr>
+  <td>9</td>
+  <td><code>ref_node_assert</code><br><small style="color:var(--muted)"></small></td>
+  <td><span class="tag tag-async">Async</span></td>
+  <td><code>auth.test.js</code><br><small style="color:var(--muted)">tests/auth.test.js</small><br><code>config.test.js</code><br><small style="color:var(--muted)">tests/config.test.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>ref_node_assert node in project.</td>
+</tr>
+<tr>
+  <td>10</td>
+  <td><code>ref_node_child_process</code><br><small style="color:var(--muted)"></small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>backup.js</code><br><small style="color:var(--muted)">src/backup.js</small><br><code>config.test.js</code><br><small style="color:var(--muted)">tests/config.test.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>ref_node_child_process node in project.</td>
+</tr>
+<tr>
+  <td>11</td>
+  <td><code>ref_node_path</code><br><small style="color:var(--muted)"></small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>backup.js</code><br><small style="color:var(--muted)">src/backup.js</small><br><code>config.test.js</code><br><small style="color:var(--muted)">tests/config.test.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>ref_node_path node in project.</td>
+</tr>
+<tr>
+  <td>12</td>
+  <td><code>ref_node_test</code><br><small style="color:var(--muted)"></small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>auth.test.js</code><br><small style="color:var(--muted)">tests/auth.test.js</small><br><code>config.test.js</code><br><small style="color:var(--muted)">tests/config.test.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>Verifies imports, entry points, or version behavior.</td>
+</tr>
+<tr>
+  <td>13</td>
+  <td><code>ref_node_url</code><br><small style="color:var(--muted)"></small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>config.test.js</code><br><small style="color:var(--muted)">tests/config.test.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>ref_node_url node in project.</td>
+</tr>
+<tr>
+  <td>14</td>
+  <td><code>ref_node_util</code><br><small style="color:var(--muted)"></small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>config.test.js</code><br><small style="color:var(--muted)">tests/config.test.js</small></td>
+  <td>No direct outbound edge</td>
+  <td>ref_node_util node in project.</td>
 </tr>
 </table>
 
@@ -1148,18 +1130,14 @@ flowchart LR
     <h4>Key Files</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>File</th><th>Coverage</th></tr>
-      <tr><td><code>src/backup.js</code></td><td>7 nodes</td></tr>
-<tr><td><code>src/server.js</code></td><td>5 nodes</td></tr>
-<tr><td><code>tests/config.test.js</code></td><td>5 nodes</td></tr>
-<tr><td><code>src/config.js</code></td><td>4 nodes</td></tr>
-<tr><td><code>src/retention.js</code></td><td>4 nodes</td></tr>
+      <tr><td><code>tests/config.test.js</code></td><td>5 nodes</td></tr>
 <tr><td><code>tests/auth.test.js</code></td><td>2 nodes</td></tr>
-<tr><td><code>src/index.js</code></td><td>1 nodes</td></tr>
+<tr><td><code>tests/src/config.js</code></td><td>1 nodes</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x20, imports x10, imports x6, calls x5. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: imports x8, contains x5, calls x1, dynamic import x1. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
@@ -1713,17 +1691,17 @@ flowchart LR
   <div class="card">
     <h4>Graph</h4>
     <table style="width:100%;font-size:0.85rem;">
-      <tr><td>Nodes</td><td>115</td></tr>
-      <tr><td>Edges</td><td>125</td></tr>
+      <tr><td>Nodes</td><td>125</td></tr>
+      <tr><td>Edges</td><td>145</td></tr>
       <tr><td>Hyperedges</td><td>0</td></tr>
-      <tr><td>Communities</td><td>14</td></tr>
+      <tr><td>Communities</td><td>12</td></tr>
       <tr><td>Documented Sections</td><td>9</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Edge Confidence</h4>
     <table style="width:100%;font-size:0.85rem;">
-      <tr><td>EXTRACTED</td><td>123</td></tr>
+      <tr><td>EXTRACTED</td><td>143</td></tr>
       <tr><td>INFERRED</td><td>2</td></tr>
       <tr><td>AMBIGUOUS</td><td>0</td></tr>
     </table>
@@ -1732,7 +1710,7 @@ flowchart LR
 
 <div style="text-align:center; padding:40px 0; color: var(--muted); font-size:0.9rem;">
   <p>pb-med-postgres-backup — Architecture Documentation</p>
-  <p>Generated: 2026-08-15 02:10 UTC · graphify callflow-html</p>
+  <p>Generated: 2026-09-30 14:19 UTC · graphify callflow-html</p>
 </div>
 
 </div><!-- .container -->

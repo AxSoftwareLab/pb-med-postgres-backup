@@ -28,12 +28,17 @@ node-cron (lunes 2AM COT)
 
 | Método | Ruta | Auth | Descripción |
 |--------|------|------|-------------|
-| GET | `/health` | No | Status del servicio y estadísticas de backups |
+| GET | `/health` | No | Status del servicio: `{ status, mode }`. No consulta el bucket |
 | GET | `/backup` | Bearer | Stream directo de `pg_dump` (descarga en tiempo real) |
 | POST | `/backup/trigger` | Bearer | Genera backup, sube al bucket y ejecuta cleanup |
 | GET | `/backup/latest` | Bearer | Redirect 302 a presigned URL del último backup (1h) |
 | GET | `/backup/list` | Bearer | JSON con todos los backups disponibles |
 | DELETE | `/backup/cleanup` | Bearer | Fuerza limpieza de backups expirados |
+
+El token se envía solo en la cabecera `Authorization: Bearer <token>`. El token por query string
+(`?token=`) no se acepta: sin cabecera Bearer, o con otro esquema, la respuesta es 401 aunque la
+query traiga el token correcto. Los datos de los backups (key, tamaño, fecha) se consultan con
+`GET /backup/list`, que exige el token.
 
 ## Uso
 

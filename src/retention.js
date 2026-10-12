@@ -45,26 +45,3 @@ export async function cleanOldBackups() {
 
   return { deleted: expired.length, remaining, freedBytes }
 }
-
-export async function getBackupStats() {
-  const prefix = `${config.backup.subfolder}${config.backup.filePrefix}`
-  const result = await s3.send(
-    new ListObjectsV2Command({
-      Bucket: config.s3.bucket,
-      Prefix: prefix,
-    })
-  )
-
-  const objects = result.Contents || []
-  if (!objects.length) return { totalBackups: 0, totalSizeMB: 0 }
-
-  const totalSize = objects.reduce((sum, obj) => sum + (obj.Size || 0), 0)
-  const sorted = objects.sort((a, b) => new Date(a.LastModified) - new Date(b.LastModified))
-
-  return {
-    totalBackups: objects.length,
-    totalSizeMB: +(totalSize / 1024 / 1024).toFixed(2),
-    oldestBackup: sorted[0]?.LastModified,
-    newestBackup: sorted[sorted.length - 1]?.LastModified,
-  }
-}

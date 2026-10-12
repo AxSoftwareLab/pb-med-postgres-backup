@@ -34,7 +34,7 @@ alwaysApply: true
 |---------|-----------------|
 | `src/config.js` | Validacion de env vars, fail-fast si faltan |
 | `src/backup.js` | `pg_dump` spawn, upload S3, stream, list, presigned URLs |
-| `src/retention.js` | Limpieza de backups expirados, estadisticas |
+| `src/retention.js` | Limpieza de backups expirados |
 | `src/server.js` | Express API (6 endpoints) + cron schedule |
 | `src/index.js` | Entry point: MODE cron vs server |
 | `Dockerfile` | Multi-stage Alpine con `postgresql17-client` |

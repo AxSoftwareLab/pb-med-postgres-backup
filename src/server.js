@@ -3,14 +3,15 @@ import crypto from 'node:crypto'
 import cron from 'node-cron'
 import { config } from './config.js'
 import { dumpAndUpload, streamDump, listBackups, getLatestBackupUrl } from './backup.js'
-import { cleanOldBackups, getBackupStats } from './retention.js'
+import { cleanOldBackups } from './retention.js'
 
 const app = express()
 
+// El token solo se acepta por `Authorization: Bearer <token>`. La query string nunca autentica,
+// ni sola ni junto con otro esquema de cabecera (P2-PB-30).
 function authenticate(req, res, next) {
   const header = req.headers.authorization
-  const queryToken = req.query.token
-  const provided = header?.startsWith('Bearer ') ? header.slice(7) : queryToken
+  const provided = header?.startsWith('Bearer ') ? header.slice(7) : null
 
   if (!provided) return res.status(401).json({ error: 'Missing token' })
 
@@ -24,13 +25,9 @@ function authenticate(req, res, next) {
   next()
 }
 
-app.get('/health', async (_req, res) => {
-  try {
-    const stats = await getBackupStats()
-    res.json({ status: 'ok', mode: config.mode, ...stats })
-  } catch (err) {
-    res.json({ status: 'ok', mode: config.mode, backupStats: 'unavailable' })
-  }
+// Health público: confirma que el proceso responde. No consulta S3 ni expone datos del bucket.
+app.get('/health', (_req, res) => {
+  res.json({ status: 'ok', mode: config.mode })
 })
 
 app.get('/backup', authenticate, (req, res) => {

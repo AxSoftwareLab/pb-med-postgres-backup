@@ -31,7 +31,7 @@ triggers:
 curl https://pb-med-postgres-backup-production.up.railway.app/health
 ```
 
-Respuesta: `{ "status": "ok", "mode": "server", "totalBackups": N, "totalSizeMB": X.XX, ... }`
+Respuesta: `{ "status": "ok", "mode": "server" }`. No consulta el bucket; para ver los backups usar `GET /backup/list` con `Authorization: Bearer`. El token por query string no se acepta.
 
 ### Trigger backup manual
 

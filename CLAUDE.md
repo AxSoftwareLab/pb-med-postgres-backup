@@ -35,7 +35,7 @@ src/
 ├── config.js     # Validación de env vars, exports config object
 ├── server.js     # Express app, 6 endpoints, cron schedule
 ├── backup.js     # pg_dump spawn, upload S3, stream, list, presigned URLs
-└── retention.js  # Cleanup de backups expirados, estadísticas
+└── retention.js  # Cleanup de backups expirados
 Dockerfile        # Multi-stage Alpine con postgresql17-client
 railway.toml      # Builder DOCKERFILE + startCommand
 ```

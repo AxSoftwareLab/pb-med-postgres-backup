@@ -25,16 +25,18 @@ el servicio no mantiene una allowlist separada de tablas Campaigns.
 
 El servicio mantiene estos usos:
 
-- `GET /health`: health y estadísticas agregadas, sin autenticación;
+- `GET /health`: health sin autenticación; responde `{ status, mode }` y no consulta el bucket;
 - `POST /backup/trigger`: dispara un dump y la limpieza normal;
 - `GET /backup/list`: lista objetos disponibles;
 - `GET /backup/latest`: redirige a una URL firmada de descarga;
 - `GET /backup`: transmite un dump nuevo;
 - `DELETE /backup/cleanup`: ejecuta la limpieza configurada.
 
-Las operaciones autenticadas reciben el token mediante el mecanismo seguro
-del entorno de despliegue. Nunca escribir el token, una URL firmada o valores
-de credenciales en logs, documentación, tickets o capturas.
+Las operaciones autenticadas reciben el token solo en la cabecera
+`Authorization: Bearer <token>`. El token por query string (`?token=`) no se
+acepta: responde 401 aunque traiga el token correcto. Nunca escribir el token,
+una URL firmada o valores de credenciales en logs, documentación, tickets o
+capturas.
 
 ## Límite de responsabilidad
 
@@ -53,5 +55,5 @@ Después de restaurar un dump en una base aislada, el operador debe:
    `secretRef`, `fingerprint` ni metadata de secretos.
 
 El check externo es, por diseño, post-restore. Un health `ok` del
-microservicio confirma disponibilidad operativa y estadísticas del bucket;
-no confirma que una base Campaigns haya sido restaurada ni migrada.
+microservicio confirma que el proceso responde; no consulta el bucket y no
+confirma que una base Campaigns haya sido restaurada ni migrada.

@@ -19,7 +19,7 @@ node-cron (lunes 2AM COT)
   └──────────────┘
 ```
 
-- **Cron interno**: `node-cron` ejecuta backup + cleanup cada lunes a las 2:00 AM Colombia
+- **Cron interno**: `node-cron` ejecuta backup + cleanup cada lunes a las 7:00 AM Colombia (12:00 UTC)
 - **API HTTP**: Express con autenticación Bearer token para descargas bajo demanda
 - **Storage**: Railway Bucket S3-compatible (`pb-med-backups`)
 - **Retención**: 30 días por defecto, limpieza automática post-backup
@@ -84,7 +84,7 @@ pg_restore -l latest.dump
 | `S3_REGION` | No | `auto` | Región del bucket |
 | `MODE` | No | `server` | `server` (API + cron interno) o `cron` (one-shot) |
 | `PORT` | No | `3000` | Puerto del servidor Express |
-| `CRON_SCHEDULE` | No | `0 7 * * 1` | Expresión cron (default: lunes 7 UTC / 2AM COT) |
+| `CRON_SCHEDULE` | No | `0 7 * * 1` | Expresión cron (default: lunes 07:00 COT / 12:00 UTC) |
 | `BACKUP_FILE_PREFIX` | No | `backup` | Prefijo de los archivos en S3 |
 | `BUCKET_SUBFOLDER` | No | `postgres/` | Carpeta dentro del bucket |
 | `BACKUP_RETENTION_DAYS` | No | `30` | Días antes de eliminar backups antiguos |
@@ -119,3 +119,28 @@ npm run dev             # Inicia con --watch
 Epic: [SCRUM-318](https://paintballmedellin.atlassian.net/browse/SCRUM-318) (Finalizado)
 
 <!-- Push connectivity check from paintball workstation: 2026-08-09 -->
+
+## Verificación aislada en DEV
+
+- `npm test`: autenticación, configuración, paginación, retención, escritura y subida usando S3 simulado y procesos sintéticos. No necesita credenciales reales ni PostgreSQL.
+- `npm run test:restore:local`: requiere Podman (o Docker con `PB_RESTORE_CONTAINER_RUNTIME=docker`), la imagen `docker.io/pgvector/pgvector:pg17` y el checkout vecino `b-pb-med` con dependencias instaladas. Crea dos bases desechables, aplica todo el historial de migraciones, genera un dump custom con el helper del servicio, restaura y ejecuta el checker Campaigns. Compara conteos de tablas, triggers y migraciones, filas completas de campo/operador/jornada/inventario/movimientos y conciliación de stock. Comprueba restricciones con datos sintéticos. Elimina su propio contenedor y temporales al terminar. No restaura ni altera bases existentes.
+
+El simulacro local acredita compatibilidad del dump y del esquema; no acredita recuperación de datos de producción. La descarga directa y la disponibilidad del almacenamiento requieren sus propias verificaciones operativas.
+
+
+### Restauración obligatoria en CI
+
+El job `restore` descarga `PaintBall-Med/b-pb-med` desde `dev`, registra su commit y ejecuta el mismo simulacro con Docker y PostgreSQL 17. Usa la versión de Node definida por cada repositorio: migraciones y checker con el runtime del backend, dump y orquestación con el del backup. El informe JSON y el commit del backend quedan en el artefacto `postgres-restore-evidence` durante 14 días. No se suben dumps, credenciales ni filas de datos.
+
+Antes de publicar este workflow, configurar en el repositorio de backup el secreto `BACKUP_RESTORE_BACKEND_TOKEN`: token de acceso fino, limitado a `PaintBall-Med/b-pb-med` y permiso **Contents: read**, con autorización de la organización si aplica. Se utiliza solo para checkout y no se conserva en la configuración Git. Si falta, el job falla con una explicación; la restauración no se omite silenciosamente. No necesita secretos de Railway, de PostgreSQL remoto ni de S3.
+
+La evidencia se refiere a los dos commits descargados en esa ejecución. Un cambio posterior del backend exige una nueva ejecución; este workflow todavía no dispara pruebas desde el otro repositorio automáticamente.
+
+Opciones del ejecutor local:
+
+- `PB_RESTORE_CONTAINER_RUNTIME`: `podman` (predeterminado) o `docker`.
+- `PB_RESTORE_BACKEND_DIR`: ruta del backend; por defecto el checkout vecino `../b-pb-med`.
+- `PB_RESTORE_BACKEND_NODE`: ejecutable Node del backend; por defecto el mismo que inicia el simulacro.
+- `PB_RESTORE_REPORT_PATH`: archivo opcional donde conservar el resultado JSON; su carpeta debe existir. Los temporales y el contenedor propios se eliminan igualmente.
+
+El informe mide el tiempo del simulacro hasta completar las verificaciones. No representa un RTO de producción ni demuestra todavía recuperación de reservas, membresías o pagos reales.

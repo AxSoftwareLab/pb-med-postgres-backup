@@ -13,6 +13,13 @@ if (mode === 'server' && !process.env.SECRET_TOKEN) {
   process.exit(1)
 }
 
+const retentionValue = process.env.BACKUP_RETENTION_DAYS ?? '30'
+const retentionDays = Number(retentionValue)
+if (!/^[1-9][0-9]*$/.test(retentionValue) || !Number.isSafeInteger(retentionDays)) {
+  console.error('BACKUP_RETENTION_DAYS must be a positive safe integer')
+  process.exit(1)
+}
+
 export const config = {
   databaseUrl: process.env.DATABASE_URL,
   mode,
@@ -32,6 +39,6 @@ export const config = {
   backup: {
     filePrefix: process.env.BACKUP_FILE_PREFIX || 'backup',
     subfolder: process.env.BUCKET_SUBFOLDER || 'postgres/',
-    retentionDays: parseInt(process.env.BACKUP_RETENTION_DAYS || '30', 10),
+    retentionDays: retentionDays,
   },
 }

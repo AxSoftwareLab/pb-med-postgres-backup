@@ -1,8 +1,8 @@
 import {
   S3Client,
-  ListObjectsV2Command,
   DeleteObjectCommand,
 } from '@aws-sdk/client-s3'
+import { listAllObjects } from './s3Objects.js'
 import { config } from './config.js'
 
 const s3 = new S3Client({
@@ -20,14 +20,7 @@ export async function cleanOldBackups() {
   const cutoff = new Date()
   cutoff.setDate(cutoff.getDate() - config.backup.retentionDays)
 
-  const result = await s3.send(
-    new ListObjectsV2Command({
-      Bucket: config.s3.bucket,
-      Prefix: prefix,
-    })
-  )
-
-  const allObjects = result.Contents || []
+  const allObjects = await listAllObjects(s3, { Bucket: config.s3.bucket, Prefix: prefix })
   const expired = allObjects.filter((obj) => new Date(obj.LastModified) < cutoff)
 
   let freedBytes = 0
@@ -48,14 +41,7 @@ export async function cleanOldBackups() {
 
 export async function getBackupStats() {
   const prefix = `${config.backup.subfolder}${config.backup.filePrefix}`
-  const result = await s3.send(
-    new ListObjectsV2Command({
-      Bucket: config.s3.bucket,
-      Prefix: prefix,
-    })
-  )
-
-  const objects = result.Contents || []
+  const objects = await listAllObjects(s3, { Bucket: config.s3.bucket, Prefix: prefix })
   if (!objects.length) return { totalBackups: 0, totalSizeMB: 0 }
 
   const totalSize = objects.reduce((sum, obj) => sum + (obj.Size || 0), 0)

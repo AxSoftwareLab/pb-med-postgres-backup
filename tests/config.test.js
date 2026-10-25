@@ -65,7 +65,7 @@ test('aplica los valores por defecto documentados', async () => {
   const config = await loadConfig(VALID_ENV)
   assert.equal(config.mode, 'server')
   assert.equal(config.port, 3000)
-  // Lunes 07:00 UTC = 02:00 en Medellín
+  // Lunes 07:00 en Medellín = 12:00 UTC
   assert.equal(config.cronSchedule, '0 7 * * 1')
   assert.equal(config.backup.retentionDays, 30)
   assert.equal(config.backup.filePrefix, 'backup')
@@ -98,4 +98,13 @@ test('el cron por defecto es una expresión válida para node-cron', async () =>
   const { default: cron } = await import('node-cron')
   const config = await loadConfig(VALID_ENV)
   assert.equal(cron.validate(config.cronSchedule), true)
+})
+
+
+test('rechaza retenciones inválidas sin truncar ni reinterpretar valores', async () => {
+  for (const value of ['-1', '0', '1.5', '30days', 'NaN', '', ' ', ' 7 ', '9007199254740992']) {
+    const result = await loadConfig({ ...VALID_ENV, BACKUP_RETENTION_DAYS: value }, { expectFailure: true })
+    assert.equal(result.code, 1, JSON.stringify(value))
+    assert.match(result.stderr, /BACKUP_RETENTION_DAYS must be a positive safe integer/)
+  }
 })

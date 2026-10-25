@@ -14,6 +14,8 @@ function authenticate(req, res, next) {
 
   if (!provided) return res.status(401).json({ error: 'Missing token' })
 
+  if (typeof provided !== 'string') return res.status(403).json({ error: 'Invalid token' })
+
   const expected = Buffer.from(config.secretToken)
   const actual = Buffer.from(provided)
 
@@ -96,18 +98,18 @@ async function runScheduledBackup() {
  * Devuelve el server http y la tarea de cron para que los tests puedan cerrar
  * ambos; en producción index.js ignora el retorno.
  */
-export function startServer() {
-  const server = app.listen(config.port, () => {
+export function startServer({ schedule = true, host } = {}) {
+  const server = app.listen(config.port, host, () => {
     console.log(`Backup API listening on port ${server.address().port} (mode: ${config.mode})`)
   })
 
   let cronTask = null
-  if (cron.validate(config.cronSchedule)) {
+  if (schedule && cron.validate(config.cronSchedule)) {
     cronTask = cron.schedule(config.cronSchedule, runScheduledBackup, {
       timezone: 'America/Bogota',
     })
     console.log(`Cron scheduled: "${config.cronSchedule}" (Medellín / America/Bogota)`)
-  } else {
+  } else if (schedule) {
     console.warn(`Invalid CRON_SCHEDULE: "${config.cronSchedule}" — cron disabled`)
   }
 

@@ -1,12 +1,15 @@
 import { spawn } from 'node:child_process'
-import { createWriteStream, createReadStream, statSync, unlinkSync } from 'node:fs'
+import { randomUUID } from 'node:crypto'
+import { createReadStream, statSync } from 'node:fs'
+import { mkdtemp, rm } from 'node:fs/promises'
+import { writeDump } from './dumpFile.js'
+import { listAllObjects } from './s3Objects.js'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import {
   S3Client,
   PutObjectCommand,
   GetObjectCommand,
-  ListObjectsV2Command,
 } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import { config } from './config.js'
@@ -23,50 +26,32 @@ const s3 = new S3Client({
 
 function buildKey(timestamp) {
   const ts = timestamp.replace(/[:.]/g, '-')
-  return `${config.backup.subfolder}${config.backup.filePrefix}-${ts}.dump`
+  return `${config.backup.subfolder}${config.backup.filePrefix}-${ts}-${randomUUID()}.dump`
 }
 
 export async function dumpAndUpload() {
   const timestamp = new Date().toISOString()
   const key = buildKey(timestamp)
-  const tmpFile = join(tmpdir(), `pg-backup-${Date.now()}.dump`)
-
-  await new Promise((resolve, reject) => {
-    const pg = spawn('pg_dump', [config.databaseUrl, '--no-password', '-Fc'], {
-      stdio: ['ignore', 'pipe', 'pipe'],
-    })
-
-    const out = createWriteStream(tmpFile)
-    pg.stdout.pipe(out)
-
-    let stderr = ''
-    pg.stderr.on('data', (chunk) => {
-      stderr += chunk.toString()
-    })
-
-    pg.on('close', (code) => {
-      if (code !== 0) return reject(new Error(`pg_dump exited ${code}: ${stderr}`))
-      resolve()
-    })
-    pg.on('error', reject)
-  })
-
-  const stat = statSync(tmpFile)
-  const body = createReadStream(tmpFile)
-
-  await s3.send(
-    new PutObjectCommand({
+  const directory = await mkdtemp(join(tmpdir(), 'pg-backup-'))
+  const tmpFile = join(directory, 'database.dump')
+  let body
+  try {
+    await writeDump(config.databaseUrl, tmpFile)
+    const stat = statSync(tmpFile)
+    body = createReadStream(tmpFile)
+    await s3.send(new PutObjectCommand({
       Bucket: config.s3.bucket,
       Key: key,
       Body: body,
+      ContentLength: stat.size,
       ContentType: 'application/octet-stream',
-    })
-  )
-
-  unlinkSync(tmpFile)
-
-  console.log(`Backup uploaded: ${key} (${(stat.size / 1024 / 1024).toFixed(2)} MB)`)
-  return { key, size: stat.size, timestamp }
+    }))
+    console.log(`Backup uploaded: ${key} (${(stat.size / 1024 / 1024).toFixed(2)} MB)`)
+    return { key, size: stat.size, timestamp }
+  } finally {
+    body?.destroy()
+    await rm(directory, { recursive: true, force: true })
+  }
 }
 
 export function streamDump(res) {
@@ -80,34 +65,41 @@ export function streamDump(res) {
     stdio: ['ignore', 'pipe', 'pipe'],
   })
 
-  pg.stdout.pipe(res)
-
-  pg.stderr.on('data', (chunk) => console.error(`pg_dump stderr: ${chunk}`))
-
-  pg.on('error', (err) => {
-    console.error('pg_dump spawn error:', err.message)
-    if (!res.headersSent) res.status(500).json({ error: 'pg_dump failed to start' })
-  })
-
+  // No terminar una respuesta exitosa hasta confirmar la salida de pg_dump.
+  pg.stdout.pipe(res, { end: false })
+  pg.stderr.resume()
+  const timeout = setTimeout(() => pg.kill('SIGKILL'), 10 * 60 * 1000)
+  timeout.unref()
+  let failed = false
+  function fail() {
+    if (failed || res.destroyed || res.writableEnded) return
+    failed = true
+    pg.stdout.unpipe(res)
+    if (res.headersSent) {
+      res.destroy()
+    } else {
+      res.removeHeader('Content-Disposition')
+      res.status(500).json({ error: 'pg_dump failed' })
+    }
+  }
+  pg.stdout.on('error', fail)
+  pg.on('error', fail)
   pg.on('close', (code) => {
-    if (code !== 0) console.error(`pg_dump exited with code ${code}`)
+    clearTimeout(timeout)
+    if (code !== 0) fail()
+    else if (!failed && !res.destroyed && !res.writableEnded) res.end()
+  })
+  res.on('close', () => {
+    clearTimeout(timeout)
+    if (pg.exitCode == null && pg.signalCode == null) pg.kill('SIGKILL')
   })
 
-  res.on('close', () => {
-    if (!pg.killed) pg.kill()
-  })
 }
 
 export async function listBackups() {
   const prefix = `${config.backup.subfolder}${config.backup.filePrefix}`
-  const result = await s3.send(
-    new ListObjectsV2Command({
-      Bucket: config.s3.bucket,
-      Prefix: prefix,
-    })
-  )
-
-  const items = (result.Contents || [])
+  const objects = await listAllObjects(s3, { Bucket: config.s3.bucket, Prefix: prefix })
+  const items = objects
     .map((obj) => ({
       key: obj.Key,
       size: obj.Size,

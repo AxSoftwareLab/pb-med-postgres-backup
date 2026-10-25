@@ -6,6 +6,9 @@ on:
   push:
     branches: [main, dev]
 
+permissions:
+  contents: read
+
 concurrency:
   group: backup-ci-${{ github.workflow }}-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
@@ -19,7 +22,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version-file: .nvmrc
           cache: 'npm'
       - run: npm ci
       - name: Tests (node:test)
@@ -66,3 +69,66 @@ jobs:
             echo "::error::no se reportaron las variables faltantes"
             exit 1
           }
+
+
+  restore:
+    name: Restauración PostgreSQL 17 con datos operativos
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: pb-med-postgres-backup
+          persist-credentials: false
+      - name: Comprobar acceso de lectura al backend
+        env:
+          BACKEND_TOKEN: ${{ secrets.BACKUP_RESTORE_BACKEND_TOKEN }}
+        run: |
+          if [ -z "$BACKEND_TOKEN" ]; then
+            echo "::error::Configura BACKUP_RESTORE_BACKEND_TOKEN con acceso Contents:read a PaintBall-Med/b-pb-med para ejecutar la restauración obligatoria."
+            exit 1
+          fi
+      - uses: actions/checkout@v4
+        with:
+          repository: PaintBall-Med/b-pb-med
+          ref: dev
+          path: b-pb-med
+          token: ${{ secrets.BACKUP_RESTORE_BACKEND_TOKEN }}
+          persist-credentials: false
+      - name: Registrar revisión del esquema verificado
+        working-directory: b-pb-med
+        run: git rev-parse HEAD > ../backend-revision.txt
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: b-pb-med/.nvmrc
+          cache: npm
+          cache-dependency-path: b-pb-med/package-lock.json
+      - name: Preparar Prisma con el runtime del backend
+        working-directory: b-pb-med
+        run: |
+          echo "PB_RESTORE_BACKEND_NODE=$(command -v node)" >> "$GITHUB_ENV"
+          npm ci
+          npm run db:generate
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: pb-med-postgres-backup/.nvmrc
+          cache: npm
+          cache-dependency-path: pb-med-postgres-backup/package-lock.json
+      - run: npm ci
+        working-directory: pb-med-postgres-backup
+      - name: Generar, restaurar y comprobar el respaldo
+        working-directory: pb-med-postgres-backup
+        env:
+          PB_RESTORE_CONTAINER_RUNTIME: docker
+          PB_RESTORE_REPORT_PATH: ${{ github.workspace }}/restore-result.json
+        run: npm run test:restore:local
+      - name: Conservar evidencia del simulacro
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: postgres-restore-evidence
+          path: |
+            backend-revision.txt
+            restore-result.json
+          retention-days: 14
+          if-no-files-found: warn
